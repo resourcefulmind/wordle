@@ -64,6 +64,7 @@ h1 {
   font-size: 2rem;
   line-height: var(--header-height);
   text-align: center;
+  
 }
 
 @media (max-width: 25rem) {
@@ -81,6 +82,7 @@ h1 {
   margin: 0 auto;
   min-width: 250px;
   max-width: min(500px, 58vh, 100%);
+  border: 3px solid red;
 }
 
 .guess-results {
@@ -88,6 +90,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border: 3px solid blue;
 }
 
 .guess {
