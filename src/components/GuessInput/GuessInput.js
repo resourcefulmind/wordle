@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GuessInput() {
+function GuessInput({ setGuesses }) {
   const [guessTheInput, setGuessTheInput] = React.useState('');
 
   const submitGuess = (event) => {
@@ -8,7 +8,11 @@ function GuessInput() {
 
     const upperCaseGuess = guessTheInput.toUpperCase(); //change value to uppercase
 
-    console.log(upperCaseGuess); //log user's guess to console
+    const newGuess = { id: crypto.randomUUID(), guess: upperCaseGuess };
+
+    setGuesses((prevGuesses) => [...prevGuesses, newGuess]); //append guessed word to list and set dynamic key
+
+    console.log(newGuess);
 
     setGuessTheInput(''); //clear input field
   }
