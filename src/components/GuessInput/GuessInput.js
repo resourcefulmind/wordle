@@ -10,9 +10,10 @@ function GuessInput({ setGuesses }) {
 
     const newGuess = { id: crypto.randomUUID(), guess: upperCaseGuess };
 
-    setGuesses((prevGuesses) => [...prevGuesses, newGuess]); //append guessed word to list and set dynamic key
+    setGuesses((prevGuesses) => [...prevGuesses, upperCaseGuess]); //append guessed word to list and set dynamic key
 
     console.log(newGuess);
+    console.log(upperCaseGuess);
 
     setGuessTheInput(''); //clear input field
   }
