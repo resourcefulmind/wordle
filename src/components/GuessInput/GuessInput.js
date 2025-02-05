@@ -8,11 +8,11 @@ function GuessInput({ setGuesses }) {
 
     const upperCaseGuess = guessTheInput.toUpperCase(); //change value to uppercase
 
-    const newGuess = { id: crypto.randomUUID(), guess: upperCaseGuess };
+    // const newGuess = { id: crypto.randomUUID(), guess: upperCaseGuess };
 
     setGuesses((prevGuesses) => [...prevGuesses, upperCaseGuess]); //append guessed word to list and set dynamic key
 
-    console.log(newGuess);
+    // console.log(newGuess);
     console.log(upperCaseGuess);
 
     setGuessTheInput(''); //clear input field
@@ -37,7 +37,6 @@ function GuessInput({ setGuesses }) {
           onChange={(event) => setGuessTheInput(event.target.value)}
         />
       </form>
-      <p>Hello: {guessTheInput}</p>
     </div>
   )
   

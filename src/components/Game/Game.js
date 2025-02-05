@@ -17,7 +17,7 @@ function Game() {
     <>
       <p>Just like the NY Times...only, you're not in New York</p>
       <GuessInput setGuesses={setGuesses} />
-      <GuessResults guesses={guesses} />
+      <GuessResults guesses={guesses} answer={answer} />
     </>
 
   ) 
