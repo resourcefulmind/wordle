@@ -1,14 +1,18 @@
 import React from 'react';
 import { range } from '../../utils';
 
-function Guess({value}) {
+function Guess({statuses}) {
   return (
     <p className='guess'>
-      {range(5).map((index) => (
-        <span key={index} className='cell'>
-          {value[index] || ''} {/*display letter if available or empty string if it is not. */}
+      {range(5).map((index) => {
+        const letter = statuses ? statuses[index]?.letter || '' : '';
+        const status = statuses ? statuses[index]?.status || '' : '';
+        return(
+        <span key={index} className={`cell ${status}`}>
+          {letter}          
         </span>
-      ))}
+        );
+      })}
     </p>
   )
 }
