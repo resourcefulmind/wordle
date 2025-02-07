@@ -1,6 +1,7 @@
 import React from 'react';
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
-function GuessInput({ setGuesses }) {
+function GuessInput({ setGuesses, setGameStatus, answer, guesses, gameStatus }) {
   const [guessTheInput, setGuessTheInput] = React.useState('');
 
   const submitGuess = (event) => {
@@ -12,10 +13,22 @@ function GuessInput({ setGuesses }) {
 
     setGuesses((prevGuesses) => [...prevGuesses, upperCaseGuess]); //append guessed word to list and set dynamic key
 
+    const currentGuessCount = guesses.length + 1; //
+
+    if (upperCaseGuess === answer) {
+      setGameStatus('won'); //to update game status to won
+    } else if(currentGuessCount === NUM_OF_GUESSES_ALLOWED) {
+      setGameStatus('lost'); //to update game status to lost if user exhausts all attempts
+    }
+
+
     // console.log(newGuess);
-    console.log(upperCaseGuess);
+    // console.log(upperCaseGuess);
+
+    // console.log(answer);
 
     setGuessTheInput(''); //clear input field
+
   }
 
 
@@ -35,6 +48,7 @@ function GuessInput({ setGuesses }) {
           title='Your guess must be 1 to 5 letters (no numbers or special characters).'
           required
           onChange={(event) => setGuessTheInput(event.target.value)}
+          disabled={gameStatus !== 'playing'} 
         />
       </form>
     </div>
