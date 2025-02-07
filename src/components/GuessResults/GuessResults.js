@@ -17,8 +17,6 @@ function GuessResults({ guesses, answer }) {
         const statuses = currentGuess ? checkGuess(currentGuess, answer) : null; //checkGuess will validate the current Guess against the answer
         
         return <Guess key={index} statuses={statuses} />
-
-        
       })}
     </div>
   )
