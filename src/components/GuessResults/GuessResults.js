@@ -5,7 +5,7 @@ import { range } from '../../utils';
 import { checkGuess } from '../../game-helpers';
 
 
-function GuessResults({ guesses, answer }) {
+function GuessResults({ guesses, answer, updateLetterStatuses }) {
   
   return (
     <div className='guess-results'>
@@ -15,6 +15,10 @@ function GuessResults({ guesses, answer }) {
         console.log(`Index: ${index}, Current Guess: ${currentGuess}, Answer: ${answer}`);  //Debugging line
         
         const statuses = currentGuess ? checkGuess(currentGuess, answer) : null; //checkGuess will validate the current Guess against the answer
+
+        if (statuses) {
+          updateLetterStatuses(statuses);
+        }
         
         return <Guess key={index} statuses={statuses} />
       })}
