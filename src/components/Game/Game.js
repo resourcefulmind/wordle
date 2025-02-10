@@ -2,6 +2,7 @@ import React from 'react';
 import GuessInput from '../GuessInput';
 import GuessResults from '../GuessResults';
 import Banner from '../Banner/Banner';
+import Keyboard from '../Keyboard';
 
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
@@ -35,7 +36,6 @@ function Game() {
           newStatuses[letter] = status;
         }
       });
-      console.log(newStatuses);
 
       return newStatuses; //to return the updated status object
     })
@@ -55,17 +55,22 @@ function Game() {
         answer={answer} 
         guesses={guesses} 
         gameStatus={gameStatus} 
+        updateLetterStatuses={updateLetterStatuses} 
 
       />
       <GuessResults 
         guesses={guesses} 
         answer={answer} 
-        updateLetterStatuses={updateLetterStatuses} 
       />
       <Banner 
         gameStatus={gameStatus} 
         answer={answer} 
         numOfGuesses={guesses.length} 
+      />
+      <Keyboard 
+        letterStatuses={letterStatuses} 
+        
+      
       />
     </>
   ) 

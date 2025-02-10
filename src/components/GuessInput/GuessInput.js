@@ -1,19 +1,25 @@
 import React from 'react';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+import { checkGuess } from '../../game-helpers';
 
-function GuessInput({ setGuesses, setGameStatus, answer, guesses, gameStatus }) {
+function GuessInput({ setGuesses, setGameStatus, answer, guesses, gameStatus, updateLetterStatuses }) {
   const [guessTheInput, setGuessTheInput] = React.useState('');
 
   const submitGuess = (event) => {
-    event.preventDefault(); //prevent default form behavior
+    event.preventDefault(); //prevent default form submission behavior
 
     const upperCaseGuess = guessTheInput.toUpperCase(); //change value to uppercase
-
-    // const newGuess = { id: crypto.randomUUID(), guess: upperCaseGuess };
 
     setGuesses((prevGuesses) => [...prevGuesses, upperCaseGuess]); //append guessed word to list and set dynamic key
 
     const currentGuessCount = guesses.length + 1; //
+
+    //check the guess and update the letter status here instead of GuessResult to avoid infinite loop
+    const statuses = checkGuess(upperCaseGuess, answer);
+    if (statuses) {
+      updateLetterStatuses(statuses); // Update letter statuses for the visual keyboard
+
+    }
 
     if (upperCaseGuess === answer) {
       setGameStatus('won'); //to update game status to won
@@ -21,14 +27,7 @@ function GuessInput({ setGuesses, setGameStatus, answer, guesses, gameStatus }) 
       setGameStatus('lost'); //to update game status to lost if user exhausts all attempts
     }
 
-
-    // console.log(newGuess);
-    // console.log(upperCaseGuess);
-
-    // console.log(answer);
-
     setGuessTheInput(''); //clear input field
-
   }
 
 
