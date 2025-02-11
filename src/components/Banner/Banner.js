@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Banner({ gameStatus, answer, numOfGuesses }) {
+function Banner({ gameStatus, answer, numOfGuesses, restartGame }) {
 
   if (gameStatus === 'playing') {
     return null; //nothing to be shown while game is still being played
@@ -17,6 +17,7 @@ function Banner({ gameStatus, answer, numOfGuesses }) {
         Sorry, the correct answer is <strong>{answer}</strong>.
       </p>
     )}
+    <button onClick={restartGame}>Restart Game</button>
   </div>
   )
 }

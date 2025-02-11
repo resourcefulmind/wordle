@@ -150,16 +150,30 @@ h1 {
 
 .guess-input-wrapper label {
   font-size: 1.25rem;
+    text-align: center;  
+    display: block;
+    margin-bottom: 8px; 
 }
 
 .guess-input-wrapper input {
   display: block;
+  margin: 0 auto;
+  font-size: 1.5rem;
   width: 100%;
+  max-width: 300px;
   font-size: 2rem;
   border: 2px solid var(--color-gray-300);
-  border-radius: 4px;
-  padding: 8px 16px;
+  border-radius: 5px;
+  padding: 12px;
   outline-offset: 4px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.guess-input-wrapper input:focus {
+  outline: none;
+  border-color: var(--color-success);
+  box-shadow: 0 0 5px var(--color-success);
 }
 
 .banner {
@@ -180,10 +194,12 @@ h1 {
 .happy.banner {
   background: var(--color-success);
   color: white;
+  border-radius: 5px;
 }
 .sad.banner {
   background: var(--color-error);
   color: white;
+  border-radius: 5px;
 }
 
 .visually-hidden {
@@ -253,4 +269,82 @@ h1 {
 .key.incorrect {
   background-color: rgb(0, 0, 0);
   color: white;
+}
+
+.banner button {
+  background-color: white;
+  border: 2px solid #333;
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.banner.happy button {
+  border-color: #6AA964;
+  color: #6AA964;
+}
+
+.banner.sad button {
+  border-color: red;
+  color: red;
+}
+
+.banner button:hover {
+  background-color: #f0f0f0;
+}
+
+.subtitle {
+  font-style: italic;
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: var(--color-gray-500);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Media queries */
+@media (max-width: 600px) {
+  .game-wrapper {
+    padding: var(--game-spacing) 16px; /* Reduce padding on smaller screens */
+  }
+
+  .cell {
+    font-size: 1.5rem; /* Smaller font size for cells */
+  }
+
+  .guess-input-wrapper input {
+    font-size: 1.25rem; /* Smaller font size for input */
+  }
+
+  header {
+    flex-direction: column; /* Stack header elements on smaller screens */
+    align-items: center; /* Center align header content */
+  }
+}
+
+@media (max-width: 400px) {
+  .cell {
+    width: 18%; /* Adjust cell width for very small screens */
+  }
+
+  .guess-input-wrapper input {
+    font-size: 1rem; /* Further reduce input font size */
+  }
+}
+
+/* Additional Responsive Adjustments */
+@media (max-width: 768px) {
+  .keyboard {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* Adjust keyboard layout for smaller screens */
+    gap: 4px;
+  }
+
+  .key {
+    padding: 10px;
+    font-size: 1rem; /* Adjust key font size */
+  }
 }
