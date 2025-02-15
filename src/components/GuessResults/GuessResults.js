@@ -12,7 +12,7 @@ function GuessResults({ guesses, answer }) {
       {range(NUM_OF_GUESSES_ALLOWED).map((index) => {
         const currentGuess = guesses[index] || '' //get guess for current row
         
-        console.log(`Index: ${index}, Current Guess: ${currentGuess}, Answer: ${answer}`);  //Debugging line
+        // console.log(`Index: ${index}, Current Guess: ${currentGuess}, Answer: ${answer}`);  //Debugging line
         
         const statuses = currentGuess ? checkGuess(currentGuess, answer) : null; //checkGuess will validate the current Guess against the answer
         
