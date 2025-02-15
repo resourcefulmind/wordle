@@ -40,7 +40,7 @@ function Game() {
       return newStatuses; //to return the updated status object
     })
   }
-  console.info({ answer });
+  // console.info({ answer });
 
   function restartGame() {
     setAnswer(sample(WORDS)); //pick a new random word on game restart
