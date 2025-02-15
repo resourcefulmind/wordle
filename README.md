@@ -1,8 +1,10 @@
-# EmulatingWordle 
+# Emulating Wordle 
 
 ## Overview
 
 This project is a recreation of the popular online word game, Wordle. Players have six attempts to guess a five-letter word, receiving feedback on their guesses to help them identify the correct letters and their positions.
+
+You can play the game live at [Emulating Wordle](https://emulating-wordle.netlify.app).
 
 ![Demo showing the finished product, our Wordle clone](docs/wordle-demo.gif)
 

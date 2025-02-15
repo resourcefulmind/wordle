@@ -51,9 +51,9 @@ function Game() {
   }
 
 
-  React.useEffect(() => {
-    console.log('Game Status Changed:', gameStatus);
-  }, [gameStatus]);
+  // React.useEffect(() => {
+  //   console.log('Game Status Changed:', gameStatus);
+  // }, [gameStatus]);
   return(
     <>
       <p className='subtitle'>Just like the NY Times...only, you're not in New York</p>
