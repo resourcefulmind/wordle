@@ -1,11 +1,15 @@
 /*
   Theme and global variables
 */
+:root {
+  --header-height: clamp(3rem, 8vh, 4rem);
+}
+
 html {
   overflow-y: scroll;
 
   --game-spacing: 32px;
-  --header-height: 4rem;
+  --header-height: clamp(3rem, 8vh, 4rem);
 
   --color-success: hsl(150deg 70% 30%);
   --color-warning: hsl(50deg 100% 30%);
@@ -51,6 +55,8 @@ header {
   height: var(--header-height);
   border-bottom: 1px solid var(--color-gray-700);
   color: var(--color-gray-300);
+  padding: 0 clamp(8px, 2vw, 16px);
+  align-items: center;
 }
 
 header .side {
@@ -61,10 +67,8 @@ header .side {
 
 h1 {
   flex: 1;
-  font-size: 2rem;
-  line-height: var(--header-height);
+  font-size: clamp(1.25rem, 4vw, 2rem);
   text-align: center;
-  
 }
 
 @media (max-width: 25rem) {
@@ -73,15 +77,63 @@ h1 {
   }
 }
 
+.how-to-play {
+  margin-bottom: clamp(12px, 3vh, 20px);
+  padding: clamp(10px, 2vw, 15px);
+  border: 1px solid var(--color-gray-700);
+  border-radius: 4px;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+}
+
+.how-to-play h2 {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  margin-bottom: clamp(8px, 2vh, 10px);
+}
+
+.how-to-play ul {
+  list-style-type: disc;
+  color: var(--color-gray-300);
+}
+
+.how-to-play ul ul {
+  margin-top: 5px;
+}
+
+.how-to-play li {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.example {
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin: 5px;
+}
+
+.example.correct {
+  background-color: var(--color-success);
+  color: white;
+}
+
+.example.misplaced {
+  background-color: var(--color-warning);
+  color: white;
+}
+
+.example.incorrect {
+  background-color: var(--color-gray-300);
+  color: white;
+}
+
 .game-wrapper {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--game-spacing);
-  padding: var(--game-spacing) 32px;
+  gap: clamp(16px, 3vh, 32px);
+  padding: clamp(12px, 3vw, 32px);
   margin: 0 auto;
+  width: min(95%, 500px);
   min-width: 250px;
-  max-width: min(500px, 58vh, 100%);
 }
 
 .guess-results {
@@ -93,19 +145,20 @@ h1 {
 
 .guess {
   display: flex;
-  gap: 4px;
-  margin-bottom: 4px;
+  gap: clamp(2px, 1vw, 4px);
+  margin-bottom: clamp(2px, 1vw, 4px);
+  justify-content: center;
 }
 
 .cell {
   position: relative;
-  width: 20%;
+  width: clamp(2.5rem, 15vw, 4rem);
   display: grid;
   place-content: center;
   aspect-ratio: 1 / 1;
   border: 2px solid var(--color-gray-700);
   border-radius: var(--radius);
-  font-size: 2rem;
+  font-size: clamp(1.25rem, 5vw, 2rem);
 }
 
 /*
@@ -145,26 +198,27 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 6.75rem;
+  height: auto;
+  min-height: 6rem;
+  padding: 0.5rem;
 }
 
 .guess-input-wrapper label {
-  font-size: 1.25rem;
-    text-align: center;  
-    display: block;
-    margin-bottom: 8px; 
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  text-align: center;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 .guess-input-wrapper input {
   display: block;
   margin: 0 auto;
-  font-size: 1.5rem;
   width: 100%;
-  max-width: 300px;
-  font-size: 2rem;
+  max-width: min(300px, 90vw);
+  font-size: clamp(1.25rem, 4vw, 2rem);
   border: 2px solid var(--color-gray-300);
   border-radius: 5px;
-  padding: 12px;
+  padding: clamp(8px, 2vw, 12px);
   outline-offset: 4px;
   text-transform: uppercase;
   text-align: center;
@@ -305,7 +359,109 @@ h1 {
   text-align: center;
 }
 
+/* Keyboard Layout */
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: clamp(2px, 0.5vw, 4px);
+  margin-top: clamp(8px, 2vh, 16px);
+  width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Individual Key Styling */
+.keyboard button {
+  background: var(--color-gray-900);
+  border: 2px solid var(--color-gray-700);
+  border-radius: 4px;
+  font-size: clamp(0.7rem, 2.5vw, 1rem);
+  padding: clamp(4px, 1vh, 8px) clamp(2px, 1vw, 4px);
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--color-gray-300);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Key States */
+.keyboard button.correct {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: white;
+}
+
+.keyboard button.misplaced {
+  background: var(--color-warning);
+  border-color: var(--color-warning);
+  color: white;
+}
+
+.keyboard button.incorrect {
+  background: var(--color-gray-300);
+  border-color: var(--color-gray-300);
+  color: white;
+}
+
+/* Keyboard Responsiveness */
+@media (max-width: 480px) {
+  .keyboard {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 2px;
+    padding: 0 4px;
+  }
+
+  .keyboard button {
+    padding: 4px 2px;
+    font-size: clamp(0.6rem, 2vw, 0.8rem);
+  }
+}
+
+@media (max-width: 320px) {
+  .keyboard {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 1px;
+    padding: 0 2px;
+  }
+
+  .keyboard button {
+    padding: 2px 1px;
+    font-size: clamp(0.5rem, 1.8vw, 0.7rem);
+    border-width: 1px;
+  }
+}
+
+/* Hover and Active States */
+@media (hover: hover) {
+  .keyboard button:hover {
+    background: var(--color-gray-700);
+    transform: translateY(-1px);
+  }
+
+  .keyboard button:active {
+    transform: translateY(1px);
+  }
+}
+
 /* Media queries */
+@media (max-width: 768px) {
+  .keyboard {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* Adjust keyboard layout for smaller screens */
+    gap: 4px;
+  }
+
+  .key {
+    padding: 10px;
+    font-size: 1rem; /* Adjust key font size */
+  }
+}
+
 @media (max-width: 600px) {
   .game-wrapper {
     padding: var(--game-spacing) 16px; /* Reduce padding on smaller screens */
@@ -325,6 +481,64 @@ h1 {
   }
 }
 
+@media (max-width: 480px) {
+  .game-wrapper {
+    padding: 12px;
+    gap: 16px;
+  }
+
+  header {
+    height: calc(var(--header-height) * 0.8);
+  }
+
+  .banner {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .banner button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    margin-top: 8px;
+  }
+
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  .keyboard {
+    gap: 2px;
+  }
+
+  .keyboard button {
+    font-size: 0.8rem;
+    padding: 8px 4px;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    padding: 0 8px;
+  }
+
+  .how-to-play {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .guess-input-wrapper label {
+    font-size: 1rem;
+  }
+
+  .guess-input-wrapper input {
+    font-size: 1.5rem;
+    padding: 8px;
+  }
+
+  .cell {
+    font-size: 1.5rem;
+  }
+}
+
 @media (max-width: 400px) {
   .cell {
     width: 18%; /* Adjust cell width for very small screens */
@@ -335,16 +549,14 @@ h1 {
   }
 }
 
-/* Additional Responsive Adjustments */
-@media (max-width: 768px) {
-  .keyboard {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr); /* Adjust keyboard layout for smaller screens */
-    gap: 4px;
+@media (max-width: 320px) {
+  .game-wrapper {
+    padding: 8px;
+    gap: 12px;
   }
 
-  .key {
-    padding: 10px;
-    font-size: 1rem; /* Adjust key font size */
+  .cell {
+    font-size: 1.2rem;
   }
 }
+
