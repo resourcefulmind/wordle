@@ -19,7 +19,7 @@ function Game() {
   const [letterStatuses, setLetterStatuses] = React.useState({}); //create state to be able to track and update keyboard presses and entries
   const [answer, setAnswer] = React.useState(() => sample(WORDS)); //create function-based state initializer to generate and track a new word when restarting
 
-  function updateLetterStatuses(statuses) {
+  function updateLetterStatuses(statuses) {``
     setLetterStatuses((prevStatuses) => {
       const newStatuses = {...prevStatuses}; //take the previous status from checkGuess in GuessResults
       
@@ -57,6 +57,19 @@ function Game() {
   return(
     <>
       <p className='subtitle'>Just like the NY Times...only, you're not in New York</p>
+      <div className='how-to-play'>
+        <h2>How To Play:</h2>
+        <ul>
+          <li>Guess the word in 6 tries or less</li>
+          <li>Each guess must be a valid 5-letter word</li>
+          <li>After each guess, the colors will show how close your guess was:</li>
+          <ul>
+            <li><span className='example correct'>Green</span> - Letter is correct and in right spot</li>
+            <li><span className='example misplaced'>Yellow</span> - Letter is in the word but wrong spot</li>
+            <li><span className='example incorrect'>Gray</span> - Letter is not in the word</li>
+          </ul>
+        </ul>
+      </div>
       <GuessInput 
         setGuesses={setGuesses} 
         setGameStatus={setGameStatus} 
